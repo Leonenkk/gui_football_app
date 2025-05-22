@@ -6,7 +6,7 @@ from models.database import Player, TeamType, PlayerPosition
 
 
 class XMLAdapter:
-    def __init__(self, file_name: str = "Model/players.xml"):
+    def __init__(self, file_name: str = "models/players.xml"):
         self.xml_file = Path(file_name)
 
     def set_file(self, file_path: str):

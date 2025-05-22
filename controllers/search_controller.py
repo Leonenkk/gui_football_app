@@ -53,7 +53,7 @@ class SearchResultsController:
         if self.view:
             page_data = self.get_current_page_data()
             self.view.update_table(
-                players=page_data,  # Изменено с athletes на players
+                players=page_data,
                 current_page=self.current_page,
                 total_pages=self.calculate_total_pages(),
                 total_records=len(self.search_results),
