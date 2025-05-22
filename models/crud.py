@@ -1,5 +1,5 @@
 from models.database import Session, Player, TeamType, PlayerPosition
-from models.xmlAdapter import XMLAdapter
+from models.xml_adapter import XMLAdapter
 from sqlalchemy import and_, or_
 from datetime import date
 
