@@ -10,28 +10,32 @@ class Controller:
         self.current_page = 1
         self.records_per_page = 10
         self.all_players = []
-        self.load_data()
 
     def load_data(self):
         self.all_players = Crud.get_data()
+        total_pages = self.calculate_total_pages()
+        if self.current_page > total_pages:
+            self.current_page = total_pages
         self.update_view()
 
     def change_data_source(self, source: str):
-        Crud.set_data_source(source)
-        self.load_data()
+        if source == "db":
+            Crud.set_data_source("db")
+            self.current_page = 1
+            self.load_data()
+        elif source == "xml":
+            default_path = XMLAdapter().xml_file
+            self.change_xml_file(str(default_path))
 
     def change_xml_file(self, file_path: str):
         if file_path:
             Crud.change_xml_file(file_path)
             Crud.set_data_source("xml")
+            self.current_page = 1
             self.load_data()
 
     def update_view(self):
         total_pages = self.calculate_total_pages()
-
-        if self.current_page > total_pages and total_pages > 0:
-            self.current_page = total_pages
-
         page_players = self.get_current_page_data()
         self.view.update_table(
             players=page_players,
@@ -48,16 +52,16 @@ class Controller:
         )
 
     def get_current_page_data(self):
-        start_idx = (self.current_page - 1) * self.records_per_page
-        end_idx = min(start_idx + self.records_per_page, len(self.all_players))
-        return self.all_players[start_idx:end_idx]
+        start = (self.current_page - 1) * self.records_per_page
+        end = start + self.records_per_page
+        return self.all_players[start:end]
 
-    def change_page(self, page):
+    def change_page(self, page: int):
         if 1 <= page <= self.calculate_total_pages():
             self.current_page = page
             self.update_view()
 
-    def change_records_per_page(self, new_value):
+    def change_records_per_page(self, new_value: int) -> bool:
         if new_value < 1:
             return False
         self.records_per_page = new_value
@@ -180,5 +184,5 @@ class Controller:
             message = f"Удалено {deleted_count} игроков"
         else:
             message = "Игроки не найдены"
-        self.view.open_deletion_result_window(message)
+        self.view.open_deleted_count_window(message)
         self.load_data()

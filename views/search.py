@@ -50,11 +50,11 @@ class SearchWindow:
         input_window.title("Поиск по ФИО/дате")
         input_window.geometry("300x150")
 
-        ttk.Label(input_window, text="Часть ФИО (необязательно):").pack(pady=2)
+        ttk.Label(input_window, text="Часть ФИО:").pack(pady=2)
         name_entry = ttk.Entry(input_window)
         name_entry.pack()
 
-        ttk.Label(input_window, text="Дата рождения (необязательно):").pack(pady=2)
+        ttk.Label(input_window, text="Дата рождения:").pack(pady=2)
         date_entry = DateEntry(input_window, date_pattern="yyyy-mm-dd")
         date_entry.pack()
 
