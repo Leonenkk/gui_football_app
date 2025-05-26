@@ -1,11 +1,12 @@
 import enum
-
+import os
 from sqlalchemy import create_engine, Column, Integer, String, Enum, Date
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DB_NAME = "models/football_players.db"
-engine = create_engine(f"sqlite:///{DB_NAME}", echo=True)
+basedir = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(basedir, "football_players.db")
 
+engine = create_engine(f"sqlite:///{db_path}", echo=True)
 Base = declarative_base()
 
 

@@ -1,7 +1,8 @@
+import datetime
 import tkinter as tk
 from tkinter import ttk
 from tkcalendar import DateEntry
-from datetime import date
+from datetime import datetime
 
 
 class DeleteWindow:
@@ -38,12 +39,14 @@ class DeleteWindow:
         input_window.title("Удаление по ФИО/дате")
         input_window.geometry("300x200")
 
-        ttk.Label(input_window, text="Часть ФИО (необязательно):").pack(pady=5)
+        ttk.Label(input_window, text="Часть ФИО:").pack(pady=5)
         name_entry = ttk.Entry(input_window)
         name_entry.pack()
 
-        ttk.Label(input_window, text="Дата рождения (необязательно):").pack(pady=5)
-        date_entry = DateEntry(input_window, date_pattern="yyyy-mm-dd")
+        ttk.Label(input_window, text="Дата рождения:").pack(pady=5)
+        date_entry = DateEntry(
+            input_window, date_pattern="yyyy-mm-dd", maxdate=datetime.today()
+        )
         date_entry.pack()
 
         def delete():

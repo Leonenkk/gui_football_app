@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkcalendar import DateEntry
-from datetime import date
+from datetime import datetime
 from controllers.search_controller import SearchResultsController
 from views.search_results import SearchResultsView
 
@@ -55,7 +55,9 @@ class SearchWindow:
         name_entry.pack()
 
         ttk.Label(input_window, text="Дата рождения:").pack(pady=2)
-        date_entry = DateEntry(input_window, date_pattern="yyyy-mm-dd")
+        date_entry = DateEntry(
+            input_window, date_pattern="yyyy-mm-dd", maxdate=datetime.today()
+        )
         date_entry.pack()
 
         def search():
