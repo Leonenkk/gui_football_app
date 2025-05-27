@@ -9,7 +9,6 @@ class SearchResultsView:
         self.controller = controller
         self.controller.view = self
 
-        # Настройка колонок для футболистов
         self.tree = ttk.Treeview(
             root,
             columns=(
@@ -23,7 +22,6 @@ class SearchResultsView:
             show="headings",
         )
 
-        # Настройка заголовков
         columns = {
             "ФИО игрока": 200,
             "Дата рождения": 120,
@@ -106,7 +104,6 @@ class SearchResultsView:
         self.total_pages_label.config(text=f"Всего игроков: {total_records}")
         self.records_var.set(str(self.controller.records_per_page))
 
-        # Обновление состояния кнопок
         self.prev_btn.config(state="normal" if current_page > 1 else "disabled")
         self.next_btn.config(
             state="normal" if current_page < total_pages else "disabled"
