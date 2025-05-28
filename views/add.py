@@ -63,7 +63,6 @@ class AddWindow:
                 combo.grid(row=i, column=1, padx=5, pady=5)
                 self.entries[label] = combo
 
-        # Кнопки
         btn_frame = ttk.Frame(main_frame)
         btn_frame.grid(row=len(fields) + 1, columnspan=2, pady=10)
 

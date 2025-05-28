@@ -15,7 +15,7 @@ def random_birthdate(start_year=1985, end_year=2007):
 
 
 def main(n=100):
-    fake = Faker("ru_RU")  # русская локализация для ФИО
+    fake = Faker("ru_RU")
     teams = [
         "Динамо",
         "Спартак",

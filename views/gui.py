@@ -35,11 +35,9 @@ class GUI:
             btn = tk.Button(self.button_frame, text=text, command=cmd)
             btn.grid(row=0, column=i, padx=5, pady=5)
 
-        # Контейнер данных
         self.data_container = tk.Frame(self.root)
         self.data_container.pack(expand=True, fill="both")
 
-        # Настройка таблицы
         self.setup_table()
         self.setup_treeview()
 
@@ -83,7 +81,6 @@ class GUI:
         self.pagination_frame = tk.Frame(self.root)
         self.pagination_frame.pack(side="bottom", fill="x", pady=10)
 
-        # Элементы управления
         self.records_label = tk.Label(
             self.pagination_frame, text="Записей на странице:"
         )
@@ -156,7 +153,6 @@ class GUI:
 
     def update_table(self, players, current_page, total_pages, total_records):
         """Обновление данных в таблице"""
-        # Очистка предыдущих данных
         for widget in [self.tree, self.treeview]:
             for item in widget.get_children():
                 widget.delete(item)

@@ -37,7 +37,6 @@ class SearchResultsView:
 
         self.tree.pack(expand=True, fill="both")
 
-        # Пагинация
         self.pagination_frame = tk.Frame(root)
         self.pagination_frame.pack(side="bottom", fill="x", pady=10)
 
@@ -59,7 +58,6 @@ class SearchResultsView:
         self.total_pages_label = tk.Label(self.pagination_frame, text="")
         self.total_pages_label.pack(side="left", padx=10)
 
-        # Кнопки навигации
         nav_buttons = [
             ("<<", self.controller.first_page),
             ("<", self.controller.prev_page),
@@ -79,10 +77,8 @@ class SearchResultsView:
         self.page_label.pack(side="left", padx=5)
 
     def update_table(self, players, current_page, total_pages, total_records):
-        # Очистка предыдущих данных
         self.tree.delete(*self.tree.get_children())
 
-        # Добавление новых записей
         for player in players:
             self.tree.insert(
                 "",
